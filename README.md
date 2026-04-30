@@ -4,34 +4,47 @@ This project is a microservices-based Patient Management System built using clou
 
 The system includes services for authentication, patient management, billing, and notifications, all exposed via an API gateway. It is fully containerized with Docker and uses Infrastructure as Code (IaC) with LocalStack for local AWS emulation.
 
-
-*Core Components*
+*Architecture*
 
 * API Gateway
-    * Single entry point for all client requests
-    * Routes HTTP → gRPC calls to backend services
+    * Entry point for all client requests
+    * Routes HTTP → gRPC calls
 * Authentication Service
-    * User login, token generation, access control
+    * Handles user authentication and authorization
 * Patient Service
-    * CRUD operations for patient records
+    * Manages patient records (CRUD)
 * Billing Service
-    * Handles invoices, payments, and billing logic
+    * Processes billing and payments
 * Notification Service
-    * Sends alerts (email/SMS simulation or integration-ready)
+    * Sends alerts based on system events
+* Kafka (Event Bus)
+    * Enables asynchronous communication between services
+    * Decouples producers and consumers
 
 *Features*
 
-* Modular microservices architecture
-* High-performance gRPC communication
-* Centralized routing via API Gateway
-* Fully Dockerized services
-* Local AWS emulation using LocalStack
-* Infrastructure provisioning using IaC
-* Scalable and cloud-ready design
+* Microservices-based modular design
+* Hybrid communication model:
+    * gRPC for synchronous calls
+    * Kafka for asynchronous workflows
+* Event-driven architecture for scalability
+* Dockerized deployment
+* Local AWS emulation with LocalStack
+* Infrastructure provisioning via IaC
 
-*Request Flow*
 
-1. Client sends HTTP request → API Gateway
-2. API Gateway routes request → appropriate service
-3. Services communicate internally via gRPC
-4. Response is returned through the gateway
+*Design Highlights*
+
+* Event-driven architecture improves scalability
+* Loose coupling via Kafka topics
+* High performance using gRPC
+* Cloud-ready with IaC
+* Local-first development using LocalStack
+
+
+*Event Flow Example*
+
+1. Patient is created → Patient Service
+2. Event published to Kafka (patient.created)
+3. Billing Service consumes event → generates invoice
+4. Notification Service consumes event → sends alert
