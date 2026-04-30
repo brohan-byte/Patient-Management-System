@@ -1,11 +1,11 @@
-Overview
+*Overview*
 
-This project is a microservices-based Patient Management System designed to demonstrate scalable backend architecture using modern cloud-native technologies.
+This project is a microservices-based Patient Management System built using cloud-native principles. It combines synchronous gRPC communication with asynchronous event-driven processing using Kafka, enabling scalable and loosely coupled service interactions.
 
-It consists of independently deployable services for authentication, patient management, billing, and notifications, all exposed through a centralized API gateway. The system leverages gRPC for inter-service communication, is fully containerized with Docker, and uses Infrastructure as Code (IaC) with LocalStack to emulate AWS services locally.
+The system includes services for authentication, patient management, billing, and notifications, all exposed via an API gateway. It is fully containerized with Docker and uses Infrastructure as Code (IaC) with LocalStack for local AWS emulation.
 
 
-Core Components
+*Core Components*
 
 * API Gateway
     * Single entry point for all client requests
@@ -19,7 +19,7 @@ Core Components
 * Notification Service
     * Sends alerts (email/SMS simulation or integration-ready)
 
-Features
+*Features*
 
 * Modular microservices architecture
 * High-performance gRPC communication
@@ -29,7 +29,7 @@ Features
 * Infrastructure provisioning using IaC
 * Scalable and cloud-ready design
 
-Request Flow
+*Request Flow*
 
 1. Client sends HTTP request → API Gateway
 2. API Gateway routes request → appropriate service
